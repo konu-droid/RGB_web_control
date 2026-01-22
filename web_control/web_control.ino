@@ -29,10 +29,12 @@ void setup() {
 
   WiFi.mode(WIFI_STA);
   WiFi.begin(ssid, password);
-  
-  while (WiFi.status() != WL_CONNECTED) {
+
+  int timeout = 0;
+  while (WiFi.status() != WL_CONNECTED && timeout < 60) {
     delay(500);
     Serial.print(".");
+    timeout++;
   }
   Serial.println("");
   Serial.print("Connected to WiFi. IP address: ");
